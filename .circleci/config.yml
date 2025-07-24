@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   backend-test:
     docker:
-      - image: cimg/openjdk:17.0
+      - image: cimg/openjdk:21.0.2
     working_directory: ~/react-typescript-kotlin-springboot-practice/my-backend
     steps:
       - checkout:
