@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  backend-test:
+    docker:
+      - image: cimg/openjdk:21.0.2
+    working_directory: ~/react-typescript-kotlin-springboot-practice/my-backend
+    steps:
+      - checkout:
+          path: ~/react-typescript-kotlin-springboot-practice
+      - run: ./gradlew test
+
+  frontend-test:
+    docker:
+      - image: cimg/node:20.5
+    working_directory: ~/react-typescript-kotlin-springboot-practice/my-ui
+    steps:
+      - checkout:
+          path: ~/react-typescript-kotlin-springboot-practice
+      - run: npm ci
+      - run: npm run test
+
+workflows:
+  test-all:
+    jobs:
+      - backend-test
+      - frontend-test
